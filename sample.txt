@@ -1,0 +1,5 @@
+ How to make slash command with the description
+
+ @slash.slash(name="ping", description="Test command to check if the bot is online")
+    async def ping(ctx):
+        await ctx.send("Pong!")
