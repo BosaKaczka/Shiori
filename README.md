@@ -1,2 +1,2 @@
 # Shiori
-This is just the beginning
+Bot base with basic functions.
