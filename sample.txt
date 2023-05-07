@@ -1,5 +1,22 @@
- How to make slash command with the description
+import discord
+from discord import app_commands
+from discord.ext import commands
 
- @slash.slash(name="ping", description="Test command to check if the bot is online")
-    async def ping(ctx):
-        await ctx.send("Pong!")
+
+class MyCog(commands.Cog):
+    def __init__(self, bot: commands.Bot) -> None:
+        self.bot = bot
+
+    @commands.Cog.listener()
+    async def on_ready(self):
+        print('Cog ready')
+
+    @app_commands.command(name="command-1", description='test command')
+    async def my_command(self, interaction: discord.Interaction) -> None:
+        """ /command-1 """
+        await interaction.response.send_message("Hello from command 1!", ephemeral=False)
+
+
+async def setup(bot: commands.Bot) -> None:
+    await bot.add_cog(MyCog(bot), guilds=[discord.Object(id=690938920199782420)])
+                                                            (Pod Dostojnym Jeleniem)
