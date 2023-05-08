@@ -24,7 +24,6 @@ class GUESS(commands.Cog):
     async def on_ready(self):
         print('guess is ready.')
         await self.newgame()
-        print(f'{self.num_to_guess}')
 
     @app_commands.command(name="guess", description='Try to guess the secret number')
     async def guess(self, interaction: discord.Interaction, number: int) -> None:
@@ -37,7 +36,6 @@ class GUESS(commands.Cog):
 
             await interaction.response.send_message(embed=embed, ephemeral=False)
             await self.newgame()
-            print(f'{self.num_to_guess}')
             return
         if self.num_max > number > self.num_to_guess:
             self.num_max = number

@@ -28,7 +28,8 @@ def run():
     @commands.is_owner()
     async def sync(ctx) -> None:
         fmt = await ctx.bot.tree.sync(guild=ctx.guild)
-        await ctx.send(f'Synced {len(fmt)} commands.')
+        print(f'Synced {len(fmt)} commands.')
+        await ctx.message.delete()
 
     asyncio.run(main())
 
