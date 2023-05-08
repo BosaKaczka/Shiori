@@ -15,7 +15,7 @@ class IDEAS(commands.Cog):
     async def bug_report(self, interaction: discord.Interaction, idea: str) -> None:
         embed = discord.Embed(title=f"Thank you for your submission")
         embed.add_field(name=f"{str(interaction.user)[:-5]}'s idea:", value=f"{idea}", inline=False)
-        f = open("./feedback/ideas.txt", "a", encoding="ISO-8859-2")
+        f = open("./feedback/ideas.txt", "a", encoding="ISO-8859-2") # Change to send DMs to us
         f.write(f"{str(interaction.user)}\n{idea}\n\n")
         f.close()
         await interaction.response.send_message(embed=embed, ephemeral=True)
