@@ -13,13 +13,17 @@ class BUGS(commands.Cog):
 
     @app_commands.command(name="bug", description='Report a bug')
     async def bug_report(self, interaction: discord.Interaction, bug_description: str) -> None:
-        embed = discord.Embed(title="Report has been sent")
-        embed.add_field(name=f"{str(interaction.user)[:-5]} reported a bug", value=f"**Bug description**:\n{bug_description}", inline=False)
-        f = open("./feedback/bugs.txt", "a", encoding="ISO-8859-2") # Change to send DMs to us
-        f.write(f"{str(interaction.user)}\n{bug_description}\n\n")
-        f.close()
-        await interaction.response.send_message(embed=embed, ephemeral=True)
+        embed = discord.Embed(title=f"{str(interaction.user)[:-5]} reported a bug")
+        embed.add_field(name=f"**Bug description**:\n",
+                        value=f"{bug_description}", inline=False)
+        user_ids = [490481737651060736, 264885219918741506]
+        for user_id in user_ids:
+            user = await self.bot.fetch_user(user_id)
+            channel = await user.create_dm()
+            await channel.send(embed=embed)
+
+        await interaction.response.send_message('Your report has been submitted', ephemeral=True)
 
 
 async def setup(bot: commands.Bot) -> None:
-    await bot.add_cog(BUGS(bot), guilds=[discord.Object(id=690938920199782420)])
+    await bot.add_cog(BUGS(bot))

@@ -12,14 +12,18 @@ class IDEAS(commands.Cog):
         print('ideas are ready.')
 
     @app_commands.command(name="idea", description='Let us know what would you like us to add to the Bot')
-    async def bug_report(self, interaction: discord.Interaction, idea: str) -> None:
-        embed = discord.Embed(title=f"Thank you for your submission")
-        embed.add_field(name=f"{str(interaction.user)[:-5]}'s idea:", value=f"{idea}", inline=False)
-        f = open("./feedback/ideas.txt", "a", encoding="ISO-8859-2") # Change to send DMs to us
-        f.write(f"{str(interaction.user)}\n{idea}\n\n")
-        f.close()
-        await interaction.response.send_message(embed=embed, ephemeral=True)
+    async def idea(self, interaction: discord.Interaction, idea: str) -> None:
+        embed = discord.Embed(title=f"{str(interaction.user)[:-5]}'s idea:")
+        embed.add_field(name=f"{idea}", value="", inline=False)
+
+        user_ids = [490481737651060736, 264885219918741506]
+        for user_id in user_ids:
+            user = await self.bot.fetch_user(user_id)
+            channel = await user.create_dm()
+            await channel.send(embed=embed)
+
+        await interaction.response.send_message("Thank you for your submission", ephemeral=True)
 
 
 async def setup(bot: commands.Bot) -> None:
-    await bot.add_cog(IDEAS(bot), guilds=[discord.Object(id=690938920199782420)])
+    await bot.add_cog(IDEAS(bot))

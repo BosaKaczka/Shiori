@@ -19,4 +19,4 @@ class KAMIKAZE(commands.Cog):
 
 
 async def setup(bot: commands.Bot) -> None:
-    await bot.add_cog(KAMIKAZE(bot), guilds=[discord.Object(id=690938920199782420)])
+    await bot.add_cog(KAMIKAZE(bot))

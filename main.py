@@ -27,7 +27,7 @@ def run():
     @bot.command()
     @commands.is_owner()
     async def sync(ctx) -> None:
-        fmt = await ctx.bot.tree.sync(guild=ctx.guild)
+        fmt = await ctx.bot.tree.sync()
         print(f'Synced {len(fmt)} commands.')
         await ctx.message.delete()
 

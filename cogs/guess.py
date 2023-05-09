@@ -51,7 +51,7 @@ class GUESS(commands.Cog):
                         inline=False)
         embed.set_footer(text=f"Attempt {self.attempt}")
 
-        await interaction.response.send_message(embed=embed, ephemeral=True)
+        await interaction.response.send_message(embed=embed, ephemeral=False)
 
     @app_commands.command(name="secret_number", description='Check the current state of the game')
     async def check(self, interaction: discord.Interaction) -> None:
@@ -66,4 +66,4 @@ class GUESS(commands.Cog):
 
 
 async def setup(bot: commands.Bot) -> None:
-    await bot.add_cog(GUESS(bot), guilds=[discord.Object(id=690938920199782420)])
+    await bot.add_cog(GUESS(bot))

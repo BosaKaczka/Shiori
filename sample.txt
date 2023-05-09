@@ -18,5 +18,5 @@ class MyCog(commands.Cog):
 
 
 async def setup(bot: commands.Bot) -> None:
-    await bot.add_cog(MyCog(bot), guilds=[discord.Object(id=690938920199782420)])
-                                                            (Pod Dostojnym Jeleniem)
+    await bot.add_cog(MyCog(bot))
+
