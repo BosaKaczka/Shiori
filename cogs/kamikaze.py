@@ -9,7 +9,7 @@ class KAMIKAZE(commands.Cog):
 
     @commands.Cog.listener()
     async def on_ready(self):
-        print('KAMIKAZE ready')
+        print('KAMIKAZE is ready')
 
     @app_commands.command(name="kamikaze", description='Try me!')
     async def kamikaze(self, interaction: discord.Interaction) -> None:

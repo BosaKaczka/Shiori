@@ -30,7 +30,7 @@ class GUESS(commands.Cog):
         self.attempt += 1
         if number == self.num_to_guess:
             embed = discord.Embed(
-                title=f"🏆**{str(interaction.user)[:-5]}** has guessed the number!🏆\nThe number was **{number}**",
+                title=f"🏆**{str(interaction.user)}** has guessed the number!🏆\nThe number was **{number}**",
                 color=0xffd700)
             embed.set_footer(text=f"Attempt {self.attempt}")
 
@@ -42,9 +42,9 @@ class GUESS(commands.Cog):
         if self.num_min < number < self.num_to_guess:
             self.num_min = number
 
-        self.tries.insert(0, f"**{str(interaction.user)[:-5]}** tried **{number}**")
+        self.tries.insert(0, f"**{str(interaction.user)}** tried **{number}**")
 
-        embed = discord.Embed(title=f"{str(interaction.user)[:-5]} tries {number}")
+        embed = discord.Embed(title=f"{str(interaction.user)} tries {number}")
         embed.set_thumbnail(url=interaction.user.avatar)
         embed.add_field(name="The Secret Number", value=f"{self.num_min} < | X | < {self.num_max}", inline=False)
         embed.add_field(name="Recent Attempts", value=f"{self.tries[1]}\n{self.tries[2]}\n{self.tries[3]}",

@@ -12,7 +12,11 @@ To start a new game, use the `/guess` command followed by your guess. For exampl
 
 To check the current state of the game, use the `/secret_number` command. The bot will respond with the current range of possible numbers and the user's recent attempts.
 
-
+## Join sounds
+#### Description
+Bot will play a funny sound when you will join a voice channel. To check the list of all available sounds use command `/sounds_list`. You can also test the sound using command `/sound_test`.Example `/sound_test example`
+#### Usage
+Simply use command `/sound` followed by the name of the sound. Example `/sound example`. 
 
 ## Feedback
 #### Bug report
