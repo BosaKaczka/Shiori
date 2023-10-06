@@ -29,6 +29,15 @@ class SOUND(commands.Cog):
             f"need to ste up it once!",
             ephemeral=True)
 
+    @app_commands.command(name="sound_off", description="Delete your sound configuration")
+    async def delete_sound_command(self, interaction: discord.Interaction) -> None:
+        user_id = interaction.user.id
+        if user_id in self.settings:
+            del self.settings[user_id]
+            await interaction.response.send_message("Sound configuration deleted successfully.", ephemeral=True)
+        else:
+            await interaction.response.send_message("No sound configuration found for your account.", ephemeral=True)
+
     @commands.Cog.listener()
     async def on_voice_state_update(self, member, before, after):
         user_id = member.id
@@ -37,7 +46,9 @@ class SOUND(commands.Cog):
             sound_name = settings["sound_name"]
             if sound_name and before.channel is None and after.channel:
                 channel = after.channel
-                if channel:
+                Sota_on_channel = 1104807568133587135
+                specified_user = discord.utils.get(channel.members, id=Sota_on_channel)
+                if specified_user is None:
                     try:
                         voice_client = await channel.connect()
                         source = FFmpegPCMAudio(f"./sounds/{sound_name}.mp3")
